@@ -1,10 +1,10 @@
 {
-    "name": "Conference Live Captioning by BeAware",
+    "name": "Health Scribe by BeAware",
     "short_name": "Conference Captioning",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#fff",
-    "description": "Conference Live Captioning iOS & Android apps for Deaf & Hard of Hearing attendees, built with love by BeAware",
+    "description": "Health Scribe iOS & Android apps for Deaf & Hard of Hearing or Non-English speaking patients, built with love by BeAware",
     "icons": [{
       "src": "https://medicalsubtitles.com/assets/touch/homescreen48.png",
       "sizes": "48x48",
