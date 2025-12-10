@@ -1,522 +1,298 @@
 <!DOCTYPE html>
-<!-- Change the value of lang="en" attribute if your website's language is not English.
-You can find the code of your language here - https://www.w3schools.com/tags/ref_language_codes.asp -->
-<html lang="en">
-    <head>
-        <title>Health Scribe App, by BeAware</title>
-        <meta name="description" content="Health Scribe for the Deaf & LEP by BeAware">    
-        <meta charset="utf-8">
-        <meta name="author" content="Saamer Mansoor">
-        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>HealthScribe | HIPAA Compliant Offline Medical Speech-to-Text & Translation</title>
+    <meta name="description" content="HealthScribe is a secure, offline medical transcription software and translation tool. HIPAA and ADA compliant with zero data transmission. Download the free trial.">
+    <meta name="keywords" content="Offline medical transcription software, HIPAA compliant speech to text, Real-time medical translation, Medical dictation app, Native medical app">
+    <meta name="author" content="HealthScribe">
+    <meta property="og:title" content="HealthScribe | Secure Medical Dictation">
+    <meta property="og:description" content="Real-time, offline speech-to-text for medical professionals. HIPAA compliant.">
+    <meta property="og:type" content="website">
 
-        <meta name="keywords" content="Deaf, HoH, HardofHearing, Hard, Hearing, Assistant, Android, iPhone, iOS, App, Website" />
-        <link rel="canonical" href="https://www.medicalsubtitles.com">  
-        <meta property="og:site_name" content="Health Scribe for the Deaf & LEP by BeAware">
-        <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Health Scribe By BeAware">
-        <meta name="twitter:description" content="Native Health Scribe apps for serving Deaf & Hard of Hearing or Non-English speaking patients">
-        <meta name="twitter:image" content="https://medicalsubtitles.com/images/author.png">
-        <!-- Google / Search Engine Tags -->
-        <meta itemprop="name" content="Health Scribe By BeAware">
-        <meta itemprop="description" content="Native Health Scribe apps for serving Deaf & Hard of Hearing or Non-English speaking patients">
-        <meta itemprop="image" content="https://medicalsubtitles.com/images/author.png">
-        <!-- Facebook Open Graph -->
-        <meta property="og:url" content="https://medicalsubtitles.com">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Health Scribe for the Deaf & LEP by BeAware">
-        <meta property="og:description" content="Native Health Scribe apps for serving Deaf & Hard of Hearing or Non-English speaking patients">
-        <meta property="og:image" content="https://medicalsubtitles.com/images/author.png">
-        <meta name="robots" content="noodp,noydir">
-          <!-- Facebook Open Graph end -->
-      
-        <link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-        <!-- <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png"> Need 180x180 icon medium-->
-        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
-        <!-- <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png"> Need this low-->
-        <link rel="manifest" href="favicon/site.webmanifest">
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        <!-- Favicons -->
-        <link rel="shortcut icon" href="images/favicon.png">
+    <!-- Tailwind CSS (Configured via CDN for standalone usage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#1B4375', // Primary Brand Color
+                            light: '#285896',
+                            dark: '#123055',
+                            50: '#eff6ff',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/style-responsive.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-        <link rel="stylesheet" href="css/vertical-rhythm.min.css">
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/magnific-popup.css">
+    <style>
+        /* Custom tweaks for video responsiveness */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden; 
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-600 antialiased bg-white">
 
-        <script src="https://kit.fontawesome.com/cf78c5be65.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="appear-animate">
-        
-        <!-- Page Loader -->        
-        <div class="page-loader">
-            <div class="loader">Loading...</div>
+    <!-- Navigation -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img class="h-10 w-auto md:h-12" src="https://www.medicalsubtitles.com/images/logo-dark.png" alt="HealthScribe Medical Transcription Logo">
+                </div>
+                
+                <!-- Nav CTA -->
+                <div class="hidden sm:block">
+                    <a href="https://www.medicalsubtitles.com/app" class="bg-brand hover:bg-brand-light text-white px-6 py-2.5 rounded-md text-sm font-semibold transition duration-300 shadow-md">
+                        Try Free for 30 Mins
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button (Visual Only for Landing Page context) -->
+                <div class="sm:hidden text-brand text-2xl cursor-pointer">
+                    &#9776;
+                </div>
+            </div>
         </div>
-        <!-- End Page Loader -->
+    </header>
 
-        <!-- Skip to Content -->
-        <a href="#main" class="btn skip-to-content">Skip to Content</a>
-        <!-- End Skip to Content -->
+    <main class="pt-20">
         
-        <!-- Page Wrap -->
-        <div class="page" id="top">
-            
-            <!-- Navigation panel -->
-            <nav class="main-nav js-stick">
-                <div class="container relative clearfix">
-                    <!-- Logo ( * your text or image into link tag *) -->
-                    <div class="nav-logo-wrap local-scroll">
-                        <a href="#top" class="logo">
-                            <img src="images/logo-dark.png" alt="Health Scribe by BeAware logo" />
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-b from-brand-50 to-white py-16 lg:py-24 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                
+                <!-- Text Content -->
+                <div class="max-w-4xl mx-auto mb-10">
+                    <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-brand text-xs font-bold tracking-wide uppercase mb-4 border border-blue-200">
+                        Trusted by Medical Institutions
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
+                        Secure, Real-Time Medical <br class="hidden md:block">Transcription & Translation. <br>
+                        <span class="text-brand">Completely Offline.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                        The ultimate <strong>offline medical transcription software</strong>. HIPAA and ADA compliant speech-to-text with <span class="font-semibold text-slate-800">>95% accuracy</span>. No internet required. No data leaves your device.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="https://www.medicalsubtitles.com/app" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-base font-bold rounded-lg text-white bg-brand hover:bg-brand-light shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            Download Free Trial
+                            <!-- Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                        </a>
+                        <a href="#features" class="inline-flex justify-center items-center px-8 py-4 border border-slate-300 text-base font-medium rounded-lg text-slate-700 bg-white hover:bg-gray-50 transition-all duration-300">
+                            Learn More
                         </a>
                     </div>
-                    <div class="mobile-nav" role="button" tabindex="0">
-                        <i class="fa fa-bars"></i>
-                        <span class="sr-only">Menu</span>
-                    </div>
-                    <!-- Main Menu -->
-                    <div class="inner-nav desktop-nav">
-                        <ul class="clearlist scroll-nav local-scroll">
-                            <li class="active"><a href="#home">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#features">Features</a></li>
-                            <!-- <li><a href="pricing.html">Pricing</a></li>                             -->
-                            <li><a href="#screenshots">Screenshots</a></li>                            
-                             <!-- Languages -->
-                            <!-- TODO: UNCOMMENT THIS TO ENABLE LANGUAGES -->
-                             <!-- <li>
-                                <a href="#" class="mn-has-sub"><i class="fa-solid fa-earth-americas"></i>English <i class="fa fa-angle-down"></i></a>
-                                
-                                <ul class="mn-sub">
-                                    
-                                    <li><a href="index.html">English</a></li>
-                                    <li><a href="index-fr.html">Français</a></li>
-                                    <li><a href="index-ge.html">Deutsch</a></li>
-                                    <li><a href="index-ar.html">العربيه</a></li>
-                                    <li><a href="index-nl.html">Nederlands</a></li>
-                                    <li><a href="index-es.html">Español</a></li>
-                                </ul>
-                                
-                            </li> -->
-                            <!-- End Languages -->
-                            <!-- Button -->
-                            <li>
-                                <a href="https://apps.apple.com/app/healthscribe/id6474210913"><span class="btn btn-mod btn-circle"><i class="fa fa-download"></i> Download Now</span></a>
-                            </li>
-                            <!-- End Button -->
-                            
-                        </ul>
+                </div>
+
+                <!-- Video Embed -->
+                <div class="relative max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden ring-1 ring-gray-900/10">
+                    <div class="video-container bg-black">
+                        <iframe src="https://player.vimeo.com/video/895892190" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="HealthScribe Demo Video"></iframe>
                     </div>
                 </div>
-            </nav>
-            <!-- End Navigation panel -->
-            
-            <main id="main">
-            
-                <!-- Home Section -->
-                <section class="page-section pb-100 pb-md-80 pb-sm-60" id="home">
-                    <div class="relative container">
-                        
-                        <div class="row">
-                            <div class="col-md-10 offset-md-1">
-                                
-                                <div class="align-center">
-                                    <h1 class="hs-line-8 no-transp font-alt mb-40 mb-xs-20">HealthScribe App, by BeAware</h1>
-                                    <h2 class="hs-line-15 black font-alt">Enabling Deaf & Language Accessibilty for patients & doctors, Download today!</h2>
-                                    <div>
-                                        <a href="https://vimeo.com/895892190" class="play-video-link font-alt lightbox-gallery-1 mfp-iframe">30 Second <i class="fa fa-3x fa-play-circle"></i> App Preview</a>
-                                    </div>
-                                </div>
-                        
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                </section>
-                <!-- End Home Section -->
                 
-                <!-- Big Devices Image -->
-                <div class="image-fullwidth wow fadeInUp">
-                    <img src="images/landing/mockup.jpg" alt="Banner showing the app on an iPad" />
+                <p class="mt-4 text-sm text-slate-500">Watch the Native Desktop App in action.</p>
+            </div>
+        </section>
+
+        <!-- Trust & Security Grid (Why Us) -->
+        <section id="features" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-slate-900">Why Hospitals Choose HealthScribe</h2>
+                    <p class="mt-4 text-lg text-slate-600">Built specifically for the rigorous demands of <strong>medical dictation</strong> and data privacy.</p>
                 </div>
-                <!-- End Big Devices Image -->
-                
-                
-                <!-- Text Section -->
-                <section class="page-section" id="about">
-                    <div class="container relative">
-                        
-                        <div class="row">
-                            <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
-                                <div class="section-text align-center">
-                                    
-                                    <blockquote>
-                                        <p>
-                                            Health Scribe is built by the friends who build the <a href="https://deafassistant.com/">best app for the Deaf & Hard of Hearing</a> & the 
-                                            <a href="https://conferencecaptioning.com/">Conference Live Captioning</a>.
-                                            Health Scribe enables doctors to start treating Deaf & Hard of Hearing Geriatric patients within seconds, espcially critical in emergency rooms. 
-                                            With accurate and fast medical transcription, your geriatric patients with hearing loss will have a much better exprience with this AgeTech. 
-                                            Patients with Limited English Proficiency (LEP), can also enjoy their doctor's visit more thanks to the offline live-translation. 
-                                            Loved by all, because it does not use the internet nor stores any data, and erases everything in less than a minute.
-                                        </p>
-                                    </blockquote>
-                                    
-                                    <!-- Download -->
-                                    <div class="align-center">
-                                    
-                                        <a href="https://apps.apple.com/app/healthscribe/id6474210913" class="download-button round mb-sm-10">
-                                            <span class="db-icon">
-                                                <i class="fa fa-apple"></i>
-                                            </span>
-                                            <span class="db-title">
-                                                Download For iPhone
-                                            </span>
-                                            <span class="db-descr">
-                                                Compliant offline live translation & transcription
-                                            </span>
-                                        </a>
-                                        <span class="d-none d-sm-inline-block">&nbsp;</span>
-                                        <a href="https://forms.gle/WLxyEkRxvv9YryLi6" class="download-button round">
-                                            <span class="db-icon">
-                                                <i class="fa fa-android"></i>
-                                            </span>
-                                            <span class="db-title">
-                                                Need it for Android?
-                                            </span>
-                                            <span class="db-descr">
-                                                We can build that for you
-                                            </span>
-                                        </a>
-                                        
-                                    </div>
-                                    <!-- End Download -->
-                                    
-                                </div>
-                            </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Feature 1: Offline -->
+                    <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition duration-300">
+                        <div class="w-14 h-14 bg-brand rounded-lg flex items-center justify-center mb-6 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414" />
+                            </svg>
                         </div>
-                        
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">100% Offline Capability</h3>
+                        <p class="text-slate-600">
+                            Our software works completely without internet access. It is the perfect <strong>offline medical transcription software</strong> for secure, air-gapped environments or areas with poor connectivity.
+                        </p>
                     </div>
-                </section>
-                <!-- End Text Section -->
-                
-                
-                <!-- Divider -->
-                <hr class="mt-0 mb-0 "/>
-                <!-- End Divider -->
-                
-                
-                <!-- Features Section -->
-                <section class="page-section" id="features">
-                    <div class="relative">
-                        
-                        <h2 class="section-title font-alt mb-70 mb-sm-40">
-                            Features
-                        </h2>
-                        
-                        
-                        <!-- Features Grid -->
-                        <div class="container">
-                            <div class="row multi-columns-row alt-features-grid">
-                            
-                                <!-- Features Item -->
-                                <div class="col-sm-6 col-md-4 col-lg-4">
-                                    <div class="alt-features-item align-center">
-                                        <div class="mb-10">
-                                            <img src="images/landing/feature-1.png" width="217" height="163" alt="Privacy Section image" />
-                                        </div>
-                                        <h3 class="alt-features-title font-alt">PRIVACY</h3>
-                                        <div class="alt-features-descr mb-30">
-                                            The app doesn't use internet, nor does it store any private data. 
-                                            Everything is deleted in less than a second
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Features Item -->
-                                
-                                <!-- Features Item -->
-                                <div class="col-sm-6 col-md-4 col-lg-4">
-                                    <div class="alt-features-item align-center">
-                                        <div class="mb-10">
-                                            <img src="images/landing/feature-2.png" width="217" height="163" alt="Subtitles Section image" />
-                                        </div>
-                                        <h3 class="alt-features-title font-alt">SUBTITLES</h3>
-                                        <div class="alt-features-descr mb-30">
-                                            The fastest medical live-subutitles that accurately helps doctors & nurses to communicate with their patients
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Features Item -->
-                                
-                                <!-- Features Item -->
-                                <div class="col-sm-6 col-md-4 col-lg-4">
-                                    <div class="alt-features-item align-center">
-                                        <div class="mb-10">
-                                            <img src="images/landing/feature-3.png" width="217" height="163" alt="Translate Section image" />
-                                        </div>
-                                        <h3 class="alt-features-title font-alt">TRANSLATE</h3>
-                                        <div class="alt-features-descr mb-30">
-                                            Health Scribe is the only app that can accurately translate
-                                            in real-time to over 25 languages
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Features Item -->
-                            
-                            </div>
+
+                    <!-- Feature 2: Compliance -->
+                    <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition duration-300">
+                        <div class="w-14 h-14 bg-brand rounded-lg flex items-center justify-center mb-6 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
                         </div>
-                        <!-- End Features Grid -->
-                        
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">HIPAA Compliant</h3>
+                        <p class="text-slate-600">
+                            Zero data transmission. No audio or text is ever stored on the device or sent to the cloud. We provide true <strong>HIPAA compliant speech to text</strong> solutions that mitigate liability risks.
+                        </p>
                     </div>
-                </section>
-                <!-- End Features Section -->
-                
-                
-                <!-- Divider -->
-                <hr class="mt-0 mb-0 "/>
-                <!-- End Divider -->
-                
-                
-                <!-- Screenshots Section -->
-                <section class="page-section pb-0" id="screenshots">
-                    <div class="relative">
-                        
-                        <h2 class="section-title font-alt mb-70 mb-sm-40">
-                            Screenshots
-                        </h2>
-                        
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
-                                    
-                                    <div class="section-text align-center mb-70 mb-xs-40">
-                                        Here's a sneak peak of some of the screens on an iPhone. The app is likely 
-                                        more developed and more feature-rich than what you see below, as the screenshots may be outdated. 
-                                        We hope you enjoy using the app as much as we enjoyed building it!                                        
-                                    </div>
-                                    
-                                </div>
-                            </div>
+
+                    <!-- Feature 3: Accuracy -->
+                    <div class="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition duration-300">
+                        <div class="w-14 h-14 bg-brand rounded-lg flex items-center justify-center mb-6 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                            </svg>
                         </div>
-                        
-                        <div class="image-carousel bg-dark">
-                        
-                            <!-- Image Item -->
-                            <div>
-                                <div class="post-prev-img mb-0">
-                                    <a href="images/landing/screenshots/screenshot-1.jpg" class="lightbox-gallery-2 mfp-image"><img src="images/landing/screenshots/screenshot-1.jpg" alt="Health Scribe for Deaf and Hard of Hearing by BeAware 1" /></a>
-                                </div>                            
-                            </div>
-                            <!-- End Image Item -->
-                            
-                            <!-- Image Item -->
-                            <div>
-                                <div class="post-prev-img mb-0">
-                                    <a href="images/landing/screenshots/screenshot-2.jpg" class="lightbox-gallery-2 mfp-image"><img src="images/landing/screenshots/screenshot-2.jpg" alt="Health Scribe for Deaf and Hard of Hearing by BeAware 2" /></a>
-                                </div>
-                            </div>
-                            <!-- End Image Item -->
-                            
-                            <!-- Image Item -->
-                            <div>
-                                <div class="post-prev-img mb-0">
-                                    <a href="images/landing/screenshots/screenshot-3.jpg" class="lightbox-gallery-2 mfp-image"><img src="images/landing/screenshots/screenshot-3.jpg" alt="Health Scribe for Deaf and Hard of Hearing by BeAware 3" /></a>
-                                </div>
-                            </div>
-                            <!-- End Image Item -->
-                            
-                            <!-- Image Item -->
-                            <div>
-                                <div class="post-prev-img mb-0">
-                                    <a href="images/landing/screenshots/screenshot-4.jpg" class="lightbox-gallery-2 mfp-image"><img src="images/landing/screenshots/screenshot-4.jpg" alt="Health Scribe for Deaf and Hard of Hearing by BeAware 4" /></a>
-                                </div>
-                            </div>
-                            <!-- End Image Item -->
-                            
-                            <!-- Image Item -->
-                            <div>
-                                <div class="post-prev-img mb-0">
-                                    <a href="images/landing/screenshots/screenshot-5.jpg" class="lightbox-gallery-2 mfp-image"><img src="images/landing/screenshots/screenshot-5.jpg" alt="Health Scribe for Deaf and Hard of Hearing by BeAware 5" /></a>
-                                </div>
-                            </div>
-                            <!-- End Image Item -->
-                            
-                            <!-- Image Item -->
-                            <div>
-                                <div class="post-prev-img mb-0">
-                                    <a href="images/landing/screenshots/screenshot-6.jpg" class="lightbox-gallery-2 mfp-image"><img src="images/landing/screenshots/screenshot-6.jpg" alt="Health Scribe for Deaf and Hard of Hearing by BeAware 6" /></a>
-                                </div>
-                            </div>
-                            <!-- End Image Item -->
-                        
-                        </div>
-                        
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">High Accuracy</h3>
+                        <p class="text-slate-600">
+                            Trained on extensive medical datasets, HealthScribe delivers over 95% accuracy in complex terminology, ensuring your <strong>medical dictation</strong> requires minimal editing.
+                        </p>
                     </div>
-                </section>
-                <!-- End Screenshots Section -->                
-                
-                <!-- Newsletter Section -->
-                <section class="small-section bg-dark-lighter">
-                    <div class="container relative">
-                        
-                        <form class="form align-center" id="mailchimp">
-                            <div class="row">
-                                <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
-                                    
-                                    <div class="newsletter-label font-alt">
-                                        Like it? Want to see more? Have feedback for us?
-                                    </div>
-                                    
-                                    <div class="mb-20">                                        
-                                        <button type="submit" title="button title" class="btn btn-mod btn-medium btn-w btn-round mb-xs-10" onclick=" window.open('https://forms.gle/WLxyEkRxvv9YryLi6', '_blank'); return false;">
-                                            Contact Us
-                                        </button>
-                                    </div>
-                                    
-                                    <div class="form-tip">
-                                        <i class="fa fa-info-circle"></i> Trust us, we will never send you spam or sell your information
-                                    </div>
-                                    
-                                    <div id="subscribe-result" role="region" aria-live="polite" aria-atomic="true"></div>
-                                    
-                                </div>
-                            </div>
-                        </form>
-                        
-                    </div>
-                </section>
-                <!-- End Newsletter Section -->
-            
-            </main>
-            
-            <!-- Foter -->
-            <footer class="page-section bg-gray-lighter footer pb-60">
-                <div class="container">
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Deep Dive -->
+        <section class="py-16 bg-brand-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     
-                    <!-- Footer Logo -->
-                    <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.2s">
-                        <!-- Max height 60 -->
-                        <a href="#top"><img src="images/logo-footer.png" width="78" height="36" alt="Company logo" /><span class="sr-only">Scroll to the top of the page</span></a>
-                    </div>
-                    <!-- End Footer Logo -->
-                    
-                    <!-- Social Links -->
-                    <div class="footer-social-links mb-110 mb-xs-60">
-                        <a href="https://vimeo.com/895892190" title="Vimeo" target="_blank"><i class="fa fa-play"></i> <span class="sr-only">Vimeo profile</span></a>
-                        <a href="https://github.com/TheFirstPrototype" title="GitHub" target="_blank"><i class="fa fa-github"></i> <span class="sr-only">GitHub profile</span></a>
-                        <a href="https://twitter.com/BeAware4Deaf" title="Twitter" target="_blank"><i class="fa fa-twitter"></i> <span class="sr-only">Twitter profile</span></a>
-                        <a href="https://facebook.com/BeAware4Deaf" title="Facebook" target="_blank"><i class="fa fa-facebook"></i> <span class="sr-only">Facebook profile</span></a>
-                        <a href="https://linkedin.com/showcase/BeAware4Deaf" title="LinkedIn" target="_blank"><i class="fa fa-linkedin"></i> <span class="sr-only">LinkedIn profile</span></a>
-                        <a href="https://instagram.com/BeAware4Deaf" title="Instagram" target="_blank"><i class="fa fa-instagram"></i> <span class="sr-only">Instagram profile</span></a>
-                        <a href="mailto:hi@deafassistant.com" title="Email" target="_blank"><i class="fa fa-pencil"></i> <span class="sr-only">Send email</span></a>
-                    </div>
-                    <!-- End Social Links -->
-                    
-                    <!-- Footer Text -->
-                    <div class="footer-text">
+                    <!-- Content Left -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-900 mb-6">Bridging the Communication Gap</h2>
                         
-                        <!-- Copyright -->
-                        <div class="footer-copy font-alt">
-                            <a href="https://thefirstprototype.com" target="_blank">© BeAware 2024</a>.
+                        <div class="space-y-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-semibold text-slate-900">Real-Time Medical Translation</h4>
+                                    <p class="mt-2 text-slate-600">Support non-English speaking patients instantly. HealthScribe translates medical advice in real-time, helping institutions meet <strong>ADA compliance</strong> standards for effective communication.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-xl font-semibold text-slate-900">Native Desktop Performance</h4>
+                                    <p class="mt-2 text-slate-600">Unlike laggy browser-based tools, our <strong>native medical app</strong> runs directly on your hardware. It utilizes local processing power for lightning-fast results with zero latency.</p>
+                                </div>
+                            </div>
                         </div>
-                        <!-- End Copyright -->
-                        
-                        <div class="footer-made">
-                            Made with love for the d/Deaf community.
-                        </div>
-                        
                     </div>
-                    <!-- End Footer Text --> 
-                    
-                 </div>
-                 
-                 
-                 <!-- Top Link -->
-                 <div class="local-scroll">
-                     <a href="#top" class="link-to-top"><i class="fa fa-caret-up"></i></a>
-                 </div>
-                 <!-- End Top Link -->
-                 
-            </footer>
-            <!-- End Foter -->                
-        
+
+                    <!-- Visual Right (Abstract Representation of Translation) -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100">
+                        <div class="space-y-4">
+                            <!-- Chat Bubble 1 -->
+                            <div class="flex items-end">
+                                <div class="bg-brand text-white p-4 rounded-t-lg rounded-br-lg max-w-sm">
+                                    <p class="text-sm font-medium opacity-75 mb-1">Doctor (English)</p>
+                                    <p>"Please take this medication twice a day after meals."</p>
+                                </div>
+                            </div>
+                            <!-- Arrow -->
+                            <div class="flex justify-center text-slate-400">
+                                <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                            </div>
+                            <!-- Chat Bubble 2 -->
+                            <div class="flex items-end justify-end">
+                                <div class="bg-gray-100 text-slate-800 p-4 rounded-t-lg rounded-bl-lg max-w-sm border border-gray-200">
+                                    <p class="text-sm font-medium text-brand mb-1">Translation (Spanish)</p>
+                                    <p>"Por favor tome este medicamento dos veces al día después de las comidas."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Proof Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-10">Product Overview</h2>
+                <div class="relative inline-block group">
+                    <div class="absolute -inset-1 bg-brand rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                    <img 
+                        src="https://www.medicalsubtitles.com/flyer.png" 
+                        alt="HealthScribe Product Flyer and Feature List" 
+                        class="relative rounded-lg shadow-2xl border border-gray-100 max-w-full h-auto mx-auto transform transition duration-500 hover:scale-[1.01]"
+                        loading="lazy"
+                    >
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="bg-brand py-16">
+            <div class="max-w-4xl mx-auto text-center px-4">
+                <h2 class="text-3xl font-bold text-white mb-6">Ready to secure your medical data?</h2>
+                <p class="text-blue-100 text-lg mb-8">
+                    Join the medical institutions upgrading to accurate, offline, and HIPAA-compliant transcription.
+                </p>
+                <a href="https://www.medicalsubtitles.com/app" class="inline-block bg-white text-brand font-bold py-4 px-10 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
+                    Try HealthScribe Free
+                </a>
+                <p class="mt-4 text-sm text-blue-200">No credit card required for trial.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-2xl font-bold text-white tracking-tight">HealthScribe</span>
+                    <p class="text-sm mt-2 text-slate-400">The standard for offline medical dictation.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Contact Support</a>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center md:text-left text-sm text-slate-500">
+                &copy; <script>document.write(new Date().getFullYear())</script> HealthScribe. All rights reserved.
+            </div>
         </div>
-        <!-- End Page Wrap -->
-        
-        
-        <!-- JS -->
-        <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>        
-        <script type="text/javascript" src="js/SmoothScroll.js"></script>
-        <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
-        <script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
-        <script type="text/javascript" src="js/jquery.viewport.mini.js"></script>
-        <script type="text/javascript" src="js/jquery.countTo.js"></script>
-        <script type="text/javascript" src="js/jquery.appear.js"></script>
-        <script type="text/javascript" src="js/jquery.sticky.js"></script>
-        <script type="text/javascript" src="js/jquery.parallax-1.1.3.js"></script>
-        <script type="text/javascript" src="js/jquery.fitvids.js"></script>
-        <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-        <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
-        <script type="text/javascript" src="js/imagesloaded.pkgd.min.js"></script>
-        <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-        <script type="text/javascript" src="js/wow.min.js"></script>
-        <script type="text/javascript" src="js/masonry.pkgd.min.js"></script>
-        <script type="text/javascript" src="js/morphext.js"></script>
-        <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
-        <script type="text/javascript" src="js/all.js"></script>
-        <script type="text/javascript" src="js/contact-form.js"></script>
-        <script type="text/javascript" src="js/jquery.ajaxchimp.min.js"></script>        
-        <!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
-        <script type="text/javascript" src="js/analytics.js"></script>
-        <!-- TODO: UNCOMMENT THIS TO ENABLE LANGUAGES -->
-        <!-- <script type="text/javascript">
-            $(document).ready(function () {
-                var userLang = navigator.language || navigator.userLanguage;
-                if (userLang.startsWith("fr")) {
-                        window.location.href = 'index-fr.html';
-                }
-                else if (userLang.startsWith("de")) {
-                        window.location.href = 'index-ge.html';
-                }
-                else if (userLang.startsWith("es")) {
-                        window.location.href = 'index-es.html';
-                }
-                else if (userLang.startsWith("ar")) {
-                        window.location.href = 'index-ar.html';
-                }
-                else if (userLang.startsWith("nl")) {
-                        window.location.href = 'index-nl.html';
-                }
-            });
-        </script>             -->
-               
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "SoftwareApplication",
-                "name": "Conference Live-Captioning by BeAware",
-                "operatingSystem": "iOS",
-                "applicationCategory": "UtilitiesApplication",
-                "aggregateRating": {
-                  "@type": "AggregateRating",
-                  "ratingValue": "5",
-                  "ratingCount": "12"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "price": "0",
-                  "priceCurrency": "USD"
-                }
-              }          
-        </script>                         
-    </body>
+    </footer>
+
+</body>
 </html>
